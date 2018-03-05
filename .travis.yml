@@ -14,6 +14,7 @@ php:
     - master
 
 before_script:
+    - cp phpunit.xml.dist phpunit.xml
     - composer self-update
     - composer require codeclimate/php-test-reporter --dev
     - composer install --no-interaction --prefer-source --dev
