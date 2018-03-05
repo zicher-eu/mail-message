@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <p>
+        Title: {{ title }}
+    </p>
+    <p>
+        Test: {{ test }}
+    </p>
+
+    {% if imageTest1 is defined %}
+        <img src="{{ imageTest1.cid }}" alt="{{ imageTest1.alt }}"/>
+    {% endif %}
+    {% if imageTest2 is defined %}
+        <img src="{{ imageTest2.cid }}" alt="{{ imageTest2.alt }}"/>
+    {% endif %}
+{% endblock %}
