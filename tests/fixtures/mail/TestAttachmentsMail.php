@@ -24,7 +24,7 @@ class TestAttachmentsMail extends MainMail
             ->setBody('Test body');
 
         $this
-            ->addAttachment('attachmentTest1', 'fixtures/images/test1.png')
-            ->addAttachment('attachmentTest2', 'fixtures/images/test2.png', 'Test 2.png');
+            ->addAttachment('attachmentTest1', 'tests/fixtures/images/test1.png')
+            ->addAttachment('attachmentTest2', 'tests/fixtures/images/test2.png', 'Test 2.png');
     }
 }

@@ -24,7 +24,7 @@ class TestHtmlCssMail extends MainMail
 
         $this
             ->addExtra('template', 'test.html.twig')
-            ->addExtra('styles', 'fixtures/css/base.css');
+            ->addExtra('styles', 'tests/fixtures/css/base.css');
 
         $this->setData(array_merge($this->getData(), [
             'test' => 'Test test',

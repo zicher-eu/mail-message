@@ -28,7 +28,8 @@ class SendEmailTest extends TestCase
      */
     public static function setUpBeforeClass()
     {
-        $transport = new \Swift_SmtpTransport('127.0.0.1', 4925);
+        $transport = new \Swift_NullTransport();
+        //$transport = new \Swift_SmtpTransport('127.0.0.1', 4925);
         self::$mailer = new \Swift_Mailer($transport);
     }
 
@@ -53,7 +54,7 @@ class SendEmailTest extends TestCase
     public function testSendHtmlEmail()
     {
         $factory = new Factory(new SwiftMessage(new \Swift_Message()), [
-            new TwigRendererProcessor(new \Twig_Environment(new \Twig_Loader_Filesystem('fixtures/templates'), [
+            new TwigRendererProcessor(new \Twig_Environment(new \Twig_Loader_Filesystem('tests/fixtures/templates'), [
                 'cache' => false,
             ])),
         ]);
@@ -72,7 +73,7 @@ class SendEmailTest extends TestCase
     public function testSendHtmlCssInlineEmail()
     {
         $factory = new Factory(new SwiftMessage(new \Swift_Message()), [
-            new TwigRendererProcessor(new \Twig_Environment(new \Twig_Loader_Filesystem('fixtures/templates'), [
+            new TwigRendererProcessor(new \Twig_Environment(new \Twig_Loader_Filesystem('tests/fixtures/templates'), [
                 'cache' => false,
             ])),
             new CssInlineProcessor(new CssToInlineStyles()),
@@ -92,14 +93,14 @@ class SendEmailTest extends TestCase
     public function testSendHtmlEmbeddedImagesEmail()
     {
         $factory = new Factory(new SwiftMessage(new \Swift_Message()), [
-            new TwigRendererProcessor(new \Twig_Environment(new \Twig_Loader_Filesystem('fixtures/templates'), [
+            new TwigRendererProcessor(new \Twig_Environment(new \Twig_Loader_Filesystem('tests/fixtures/templates'), [
                 'cache' => false,
             ])),
         ]);
 
         /** @var \Swift_Message $message */
         $message = $factory->factory(new TestHtmlEmbeddedImagesMail());
-        $this->assertContains('src="cid:e7f0f504a8f8df443ce3acf740c2c829', $message->getBody());
+        $this->assertContains('src="cid:939dbb9a607dc8e28fbf210b88ba94a7', $message->getBody());
         $this->assertContains('alt="Alternate text test"', $message->getBody());
 
         $result = self::$mailer->send($message);

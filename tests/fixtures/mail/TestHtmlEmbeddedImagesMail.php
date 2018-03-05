@@ -25,7 +25,7 @@ class TestHtmlEmbeddedImagesMail extends MainMail
         $this->addExtra('template', 'test.html.twig');
 
         $this
-            ->addImage('imageTest1', 'fixtures/images/test1.png')
-            ->addImage('imageTest2', 'fixtures/images/test2.png', 'Alternate text test');
+            ->addImage('imageTest1', 'tests/fixtures/images/test1.png')
+            ->addImage('imageTest2', 'tests/fixtures/images/test2.png', 'Alternate text test');
     }
 }
