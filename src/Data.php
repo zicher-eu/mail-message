@@ -456,4 +456,37 @@ class Data
     {
         return $this->data;
     }
+
+    /**
+     * @param array $data
+     * @return Data
+     */
+    public function addData(array $data): Data
+    {
+        foreach ($data as $index => $value) {
+            $this->data[$index] = $value;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param string $index
+     * @return bool
+     */
+    public function hasData(string $index): bool
+    {
+        return array_key_exists($index, $this->data);
+    }
+
+    /**
+     * @param string $index
+     * @return Data
+     */
+    public function removeData(string $index): Data
+    {
+        unset($this->data[$index]);
+
+        return $this;
+    }
 }
